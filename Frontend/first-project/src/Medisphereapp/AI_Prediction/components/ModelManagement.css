@@ -1,0 +1,45 @@
+.model-page{
+    padding:30px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:25px;
+}
+
+.model-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.model-card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:.3s;
+}
+
+.model-card:hover{
+    transform:translateY(-5px);
+}
+
+.model-card h3{
+    color:#0d6efd;
+    margin-bottom:15px;
+}
+
+.model-card p{
+    margin:10px 0;
+}
+
+.status{
+    color:green;
+    font-weight:bold;
+}
+
+.model-card button{
+    margin-top:15px;
+    width:100%;
+}

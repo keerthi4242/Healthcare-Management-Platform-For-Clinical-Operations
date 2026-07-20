@@ -1,0 +1,43 @@
+.patient-summary{
+    background:#1d2430;
+    color:white;
+    padding:18px;
+    border-radius:8px;
+    margin-top:20px;
+}
+
+.patient-summary h2{
+    color:#64b5f6;
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.summary-grid div{
+    background:#2a3342;
+    padding:12px;
+    border-radius:8px;
+}
+
+.summary-grid label{
+    display:block;
+    color:#90a4ae;
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.summary-grid p{
+    font-size:17px;
+    font-weight:600;
+    margin:0;
+    color:white;
+}
+
+.risk{
+    color:#4CAF50;
+}

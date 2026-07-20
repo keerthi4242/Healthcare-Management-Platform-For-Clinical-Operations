@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+tf_env/
+AI_Prediction_Python/Medisphere_AI/tf_env/
+
+# Node
+node_modules/
+
+# React/Vite
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

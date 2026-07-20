@@ -1,0 +1,75 @@
+.result-card {
+    margin-top: 30px;
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    border-left: 6px solid #0d6efd;
+}
+
+.result-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #0d6efd;
+    font-weight: 700;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ececec;
+}
+
+.result-row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: 600;
+    color: #555;
+    width: 35%;
+}
+
+.value {
+    width: 65%;
+    text-align: right;
+    font-weight: 600;
+    color: #222;
+}
+
+.prediction {
+    color: #0d6efd;
+    font-size: 18px;
+}
+
+.badge {
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+}
+
+.badge.high-risk {
+    background: #dc3545;
+}
+
+.badge.moderate-risk {
+    background: #ffc107;
+    color: #000;
+}
+
+.badge.low-risk {
+    background: #198754;
+}
+
+.recommendation {
+    align-items: flex-start;
+}
+
+.recommendation .value {
+    text-align: left;
+    line-height: 1.6;
+}

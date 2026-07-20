@@ -1,0 +1,35 @@
+.actions-card{
+    background:#1d2430;
+    color:white;
+    padding:18px;
+    border-radius:8px;
+    min-height:220px;
+}
+
+.actions-card h2{
+    color:#64b5f6;
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+.actions-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.action-btn{
+    background:#2a3342;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:15px;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.action-btn:hover{
+    background:#1976d2;
+    transform:translateY(-2px);
+}

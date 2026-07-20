@@ -1,0 +1,48 @@
+.consent-card{
+    background:#1d2430;
+    color:white;
+    padding:18px;
+    border-radius:8px;
+    min-height:220px;
+}
+
+.consent-card h2{
+    color:#64b5f6;
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+.consent-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.consent-box{
+    background:#2a3342;
+    padding:12px;
+    border-radius:8px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.consent-box:hover{
+    transform:translateY(-2px);
+    border:1px solid #1976d2;
+}
+
+.consent-box h4{
+    color:#b0bec5;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+.consent-box p{
+    font-size:18px;
+    font-weight:600;
+    margin:0;
+}
+
+.active{
+    color:#4CAF50;
+}
