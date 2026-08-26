@@ -1,0 +1,194 @@
+/* ===========================
+   My Patients Container
+=========================== */
+
+.my-patients-container {
+    padding: 30px;
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.patients-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.patients-header h2 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 34px;
+}
+
+.patients-header p {
+    margin-top: 5px;
+    color: #6b7280;
+}
+
+/* ===========================
+   Search
+=========================== */
+
+.patient-search {
+    width: 300px;
+    padding: 10px 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+}
+
+.patient-search:focus {
+    border-color: #2563eb;
+}
+
+/* ===========================
+   Table Card
+=========================== */
+
+.patients-table-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    overflow-x: auto;
+}
+
+/* ===========================
+   Table
+=========================== */
+
+.patients-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.patients-table thead tr {
+    background: #2563eb;
+}
+
+.patients-table th {
+    color: #221b1b;
+    padding: 16px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.patients-table td {
+    padding: 16px;
+    color: #ffffff;
+    border-bottom: 1px solid #374151;
+}
+
+/* Dark Rows */
+
+.patients-table tbody tr:nth-child(odd) {
+    background: #1f2937;
+}
+
+.patients-table tbody tr:nth-child(even) {
+    background: #2d3748;
+}
+
+.patients-table tbody tr:hover {
+    background: #374151;
+}
+
+.patients-table tbody tr:hover td {
+    color: #ffffff;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.patients-table td:last-child {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.view-btn {
+    background: #2563eb;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.view-btn:hover {
+    background: #1d4ed8;
+}
+
+.prediction-btn {
+    background: #8b5cf6;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.prediction-btn:hover {
+    background: #7c3aed;
+}
+
+/* ===========================
+   Loading
+=========================== */
+
+.loading,
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+
+    .patients-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .patient-search {
+        width: 100%;
+    }
+
+    .patients-table {
+        min-width: 900px;
+    }
+}
+.careplan-btn {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 8px 12px;
+  background: #7c3aed;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.careplan-btn:hover {
+  background: #6d28d9;
+}

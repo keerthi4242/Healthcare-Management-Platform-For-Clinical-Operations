@@ -11,8 +11,10 @@ from tensorflow.keras.layers import Dense
 data = pd.read_csv("dataset/heart_disease.csv")
 
 # Features and target
-X = data.drop("target", axis=1)
-y = data["target"]
+X = data.drop("condition", axis=1)
+y = data["condition"]
+print(data["condition"].value_counts())
+print(X.columns)
 
 # Scale features
 scaler = StandardScaler()
@@ -26,7 +28,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
     test_size=0.2,
-    random_state=42
+    random_state=42,
+    stratify=y
 )
 
 # Build Neural Network

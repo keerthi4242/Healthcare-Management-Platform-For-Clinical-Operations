@@ -5,3 +5,15 @@ body{
 .app-layout{
     display:flex;
 }
+.app-layout > div:last-child,
+.app-layout > main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+}
+.main-content {
+    margin-left: 250px;
+    margin-top: 65px;
+    width: calc(100% - 250px);
+    min-height: calc(100vh - 65px);
+    padding: 20px;
+}

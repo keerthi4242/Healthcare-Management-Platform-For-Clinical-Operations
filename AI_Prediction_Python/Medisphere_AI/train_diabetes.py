@@ -10,7 +10,8 @@ from tensorflow.keras.layers import Dense
 print("Loading diabetes dataset...")
 
 
-data = pd.read_csv("dataset/diabetes_disease.csv")
+data = pd.read_csv("dataset/diabetes_prediction_dataset.csv")
+print(data.columns)
 print(data["diabetes"].value_counts())
 
 
@@ -36,7 +37,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
     test_size=0.2,
-    random_state=42
+    random_state=42,
+    stratify=y
 )
 
 

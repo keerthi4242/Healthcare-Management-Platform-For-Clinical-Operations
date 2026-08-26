@@ -1,0 +1,106 @@
+/* Page */
+.model-management {
+    padding: 20px;
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Card */
+.model-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.model-card .card-header {
+    padding: 18px 25px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Table */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Hover Effect */
+.table-hover tbody tr:hover {
+    background-color: #eef6ff;
+    transition: 0.3s;
+}
+
+/* Status Badges */
+.badge {
+    font-size: 14px;
+    padding: 7px 12px;
+    border-radius: 20px;
+}
+
+/* Button */
+.btn-warning {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    transform: scale(1.05);
+}
+
+/* Empty Row */
+.no-data {
+    color: gray;
+    font-weight: 500;
+    padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .table {
+        font-size: 14px;
+    }
+
+    .btn-warning {
+        font-size: 13px;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .card-header h3 {
+        font-size: 20px;
+    }
+}
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-buttons .btn {
+    min-width: 100px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-2px);
+}

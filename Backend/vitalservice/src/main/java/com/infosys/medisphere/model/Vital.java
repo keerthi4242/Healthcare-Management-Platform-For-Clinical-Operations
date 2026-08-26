@@ -12,5 +12,6 @@ public class Vital {
 	    private double temperature;
 	    private int spo2;
 	    private int respiratoryRate;
+	    private Integer bloodGlucoseLevel;
 	    private String timestamp;
 }

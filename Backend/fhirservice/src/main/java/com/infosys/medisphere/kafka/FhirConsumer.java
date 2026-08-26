@@ -1,5 +1,6 @@
 package com.infosys.medisphere.kafka;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -32,7 +33,11 @@ public class FhirConsumer {
         System.out.println("Latest vitals updated for patient " + vital.getPatientId());
     }
 
+//    public List<ObservationResource> getLatestVitals(int patientId) {
+//        return latestVitals.get(patientId);
+//    }
     public List<ObservationResource> getLatestVitals(int patientId) {
-        return latestVitals.get(patientId);
+        //return latestVitals.getOrDefault(patientId, Collections.emptyList());
+        return latestVitals.getOrDefault(patientId, List.of());
     }
 }

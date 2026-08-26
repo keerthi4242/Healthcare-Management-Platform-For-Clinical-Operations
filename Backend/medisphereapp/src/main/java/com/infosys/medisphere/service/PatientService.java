@@ -29,20 +29,53 @@ public class PatientService {
 	    	    patientRepository.deleteById(patientId);
 	      }
 	      public Patient updatePatient(Patient patient) {
-	    	  Patient existingPatient = patientRepository.findById(patient.getPatientId())
+
+	    	    Patient existingPatient = patientRepository
+	    	            .findById(patient.getPatientId())
 	    	            .orElse(null);
 
 	    	    if (existingPatient != null) {
 
+	    	        // Basic Details
 	    	        existingPatient.setPatientName(patient.getPatientName());
-	    	        existingPatient.setPatientAge(patient.getPatientAge());
+	    	        existingPatient.setPatientbirthDate(patient.getPatientbirthDate());
 	    	        existingPatient.setPatientGender(patient.getPatientGender());
 	    	        existingPatient.setPatientNumber(patient.getPatientNumber());
+	    	        existingPatient.setPatientAddress(patient.getPatientAddress());
 	    	        existingPatient.setPatientDisease(patient.getPatientDisease());
+
+	    	        // Diabetes Fields
+	    	        existingPatient.setAge(patient.getAge());
+	    	        existingPatient.setHypertension(patient.getHypertension());
+	    	        existingPatient.setHeartDisease(patient.getHeartDisease());
+	    	        existingPatient.setSmokingHistory(patient.getSmokingHistory());
+	    	        existingPatient.setBmi(patient.getBmi());
+	    	        existingPatient.setHbA1cLevel(patient.getHbA1cLevel());
+
+	    	        // Heart Disease Fields
+	    	        existingPatient.setSex(patient.getSex());
+	    	        existingPatient.setCp(patient.getCp());
+	    	        existingPatient.setChol(patient.getChol());
+	    	        existingPatient.setFbs(patient.getFbs());
+	    	        existingPatient.setRestecg(patient.getRestecg());
+	    	        existingPatient.setExang(patient.getExang());
+	    	        existingPatient.setOldpeak(patient.getOldpeak());
+	    	        existingPatient.setSlope(patient.getSlope());
+	    	        existingPatient.setCa(patient.getCa());
+	    	        existingPatient.setThal(patient.getThal());
 
 	    	        return patientRepository.save(existingPatient);
 	    	    }
 
 	    	    return null;
+	    	}
+	      public long getPatientCount() {
+	    	    return patientRepository.count();
+	    	}
+	      public Patient getPatientByKeycloakUserId(String keycloakUserId) {
+
+	          return patientRepository.findByKeycloakUserId(keycloakUserId)
+	                  .orElseThrow(() -> new RuntimeException("Patient not found"));
+
 	      }
 }

@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.infosys.medisphere.kafka.AlertProducer;
+import com.infosys.medisphere.model.AlertEvent;
 import com.infosys.medisphere.model.Healthtwin;
 import com.infosys.medisphere.model.Vital;
 import com.infosys.medisphere.repository.HealthtwinRepository;
@@ -14,6 +16,8 @@ import com.infosys.medisphere.repository.HealthtwinRepository;
 public class HealthtwinService {
 	@Autowired
       private HealthtwinRepository healthtwinRepository;
+	@Autowired
+	private AlertProducer alertProducer;
   public Healthtwin createHealthtwin(Healthtwin healthtwin) {
 
       double bmi = healthtwin.getWeight()
@@ -69,8 +73,69 @@ public class HealthtwinService {
   public void deleteHealthTwin(String twinId) {
 	  healthtwinRepository.deleteById(twinId);
   }
- public void processVital(Vital vital) {
-	  Healthtwin twin = healthtwinRepository.findByPatientId(vital.getPatientId())
+// public void processVital(Vital vital) {
+//	  Healthtwin twin = healthtwinRepository.findByPatientId(vital.getPatientId())
+//	            .orElse(new Healthtwin());
+//
+//	    twin.setPatientId(vital.getPatientId());
+//	    twin.setHeartRate(vital.getHeartRate());
+//	    twin.setSystolicBP(vital.getSystolicBP());
+//	    twin.setDiastolicBP(vital.getDiastolicBP());
+//	    twin.setTemperature(vital.getTemperature());
+//	    twin.setSpo2(vital.getSpo2());
+//	    twin.setRespiratoryRate(vital.getRespiratoryRate());
+//	    if (vital.getHeartRate() > 100
+//	            || vital.getSpo2() < 92
+//	            || vital.getTemperature() > 38.0
+//	            || vital.getSystolicBP() > 140) {
+//
+//	        twin.setRisklevel("HIGH");
+//
+//	    } else {
+//
+//	        twin.setRisklevel("NORMAL");
+//	    }
+//	    healthtwinRepository.save(twin);
+//  }
+  public void processVital(Vital vital) {
+
+	    // Update the Health Twin
+	    Healthtwin twin = updateHealthTwin(vital);
+
+	    // Evaluate clinical rules
+	    String risk = evaluateClinicalRules(vital);
+	    System.out.println("Risk = " + risk);
+
+	    // Update risk level
+	    twin.setRisklevel(risk);
+
+	    // Save updated twin
+	    healthtwinRepository.save(twin);
+	    if (!risk.equals("NORMAL")) {
+
+	        AlertEvent alert = AlertEvent.builder()
+	                .patientId(vital.getPatientId())
+	                .severity(risk)
+	                .message("Abnormal Vital Signs Detected")
+	                .heartRate(vital.getHeartRate())
+	                .spo2(vital.getSpo2())
+	                .temperature(vital.getTemperature())
+	                .systolicBP(vital.getSystolicBP())
+	                .diastolicBP(vital.getDiastolicBP())
+	                .respiratoryRate(vital.getRespiratoryRate())
+	                .timestamp(java.time.LocalDateTime.now())
+	                .build();
+
+	        alertProducer.publishAlert(alert);
+	    }
+
+	    System.out.println("Health Twin updated for Patient "
+	            + vital.getPatientId() + " Risk: " + risk);
+	}
+ private Healthtwin updateHealthTwin(Vital vital) {
+
+	    Healthtwin twin = healthtwinRepository
+	            .findByPatientId(vital.getPatientId())
 	            .orElse(new Healthtwin());
 
 	    twin.setPatientId(vital.getPatientId());
@@ -80,19 +145,26 @@ public class HealthtwinService {
 	    twin.setTemperature(vital.getTemperature());
 	    twin.setSpo2(vital.getSpo2());
 	    twin.setRespiratoryRate(vital.getRespiratoryRate());
-	    if (vital.getHeartRate() > 100
-	            || vital.getSpo2() < 92
-	            || vital.getTemperature() > 38.0
-	            || vital.getSystolicBP() > 140) {
 
-	        twin.setRisklevel("HIGH");
+	   // return healthtwinRepository.save(twin);
+	    return twin;
+	}
+ private String evaluateClinicalRules(Vital vital) {
 
-	    } else {
+	    if (vital.getHeartRate() > 140)
+	        return "CRITICAL";
 
-	        twin.setRisklevel("NORMAL");
-	    }
-	    healthtwinRepository.save(twin);
-  }
+	    if (vital.getSpo2() < 90)
+	        return "CRITICAL";
+
+	    if (vital.getTemperature() > 39)
+	        return "HIGH";
+
+	    if (vital.getSystolicBP() > 180)
+	        return "CRITICAL";
+
+	    return "NORMAL";
+	}
 }
       
        

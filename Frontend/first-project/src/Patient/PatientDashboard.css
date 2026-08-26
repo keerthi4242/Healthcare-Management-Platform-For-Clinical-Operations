@@ -1,0 +1,164 @@
+.patient-dashboard {
+  padding: 30px;
+  background: #f4f7fb;
+  min-height: 100vh;
+}
+.patient-header h1.name {
+  color: brown !important;
+}
+
+.patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.patient-header h1 {
+  font-size: 32px;
+  color: #155bcc;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.patient-header p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* ==========================
+   Dashboard Cards
+========================== */
+
+.patient-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin-bottom: 35px;
+}
+
+.patient-card {
+  border-radius: 16px;
+  padding: 25px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.patient-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.15);
+}
+
+.patient-card h2 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.patient-card p {
+  font-size: 15px;
+  opacity: 0.95;
+}
+
+/* Card Colors */
+
+.blue{
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+}
+
+.red{
+    background:linear-gradient(135deg,#dc2626,#f87171);
+}
+
+.orange{
+    background:linear-gradient(135deg,#ea580c,#fb923c);
+}
+
+.purple{
+    background:linear-gradient(135deg,#7c3aed,#a78bfa);
+}
+
+.green{
+    background:linear-gradient(135deg,#16a34a,#4ade80);
+}
+
+.cyan{
+    background:linear-gradient(135deg,#0891b2,#67e8f9);
+}
+
+/* ==========================
+   Summary Section
+========================== */
+
+/* ==========================
+   Summary Section
+========================== */
+
+.patient-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 25px;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card h3 {
+  color: #2563eb;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 10px;
+  font-size: 24px;
+}
+
+/* Field label + value */
+.summary-card p {
+  color: #475569;
+  margin: 14px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Name:, Gender:, etc. */
+.summary-card p strong {
+  display: block;
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+/* Actual value */
+.summary-card p {
+  color: #64748b;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width:768px){
+
+  .patient-dashboard{
+      padding:20px;
+  }
+
+  .patient-header{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:15px;
+  }
+
+  .patient-header h1{
+      font-size:28px;
+  }
+
+  .patient-summary{
+      grid-template-columns:1fr;
+  }
+
+}

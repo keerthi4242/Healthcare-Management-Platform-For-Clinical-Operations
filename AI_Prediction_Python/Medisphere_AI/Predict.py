@@ -3,6 +3,7 @@ import tensorflow as tf
 import numpy as np
 import joblib
 import pandas as pd
+import shap
 
 # Create Flask application
 app = Flask(__name__)
@@ -18,6 +19,28 @@ heart_scaler = joblib.load("model/heart_scaler.pkl")
 diabetes_model = tf.keras.models.load_model("model/diabetes_model.keras")
 diabetes_scaler = joblib.load("model/diabetes_scaler.pkl")
 
+# Background data for SHAP
+heart_background = np.zeros((1, 13))
+diabetes_background = np.zeros((1, len(diabetes_scaler.feature_names_in_)))
+
+# Explainers
+heart_explainer = shap.GradientExplainer(heart_model, heart_background)
+diabetes_explainer = shap.GradientExplainer(diabetes_model, diabetes_background)
+heart_features = [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+]
 
 # HEART DISEASE PREDICTION
 
@@ -25,6 +48,8 @@ diabetes_scaler = joblib.load("model/diabetes_scaler.pkl")
 def predict_heart():
 
     data = request.json
+    print("\nReceived JSON:")
+    print(data)
 
     values = [[
         data["age"],
@@ -41,14 +66,31 @@ def predict_heart():
         data["ca"],
         data["thal"]
     ]]
+    print("\nInput values:")
+    print(values)
 
     values = heart_scaler.transform(values)
+    print("\nScaled values:")
+    print(values)
 
     prediction = heart_model.predict(values, verbose=0)[0][0]
-
+    try:
+      shap_values = heart_explainer.shap_values(values)
+      print("\n========== HEART SHAP ==========")
+      print(type(shap_values))
+      print(np.array(shap_values).shape)
+      print(shap_values)
+      print("\nProbability:", prediction)
+      explanation = {}
+      for feature, value in zip(heart_features, shap_values[0, :, 0]):
+        explanation[feature] = float(value)
+    except Exception as e:
+     print("SHAP Error:", e)
+     explanation = {}
     return jsonify({
         "probability": float(prediction),
-        "prediction": "Heart Disease" if prediction >= 0.5 else "No Heart Disease"
+        "prediction": "Heart Disease" if prediction >= 0.5 else "No Heart Disease",
+        "shap": explanation
     })
 
 
@@ -83,10 +125,23 @@ def predict_diabetes():
     input_data = diabetes_scaler.transform(input_data)
 
     prediction = diabetes_model.predict(input_data, verbose=0)[0][0]
+    try:
+      shap_values = diabetes_explainer.shap_values(input_data)
+      print("\n========== DIABETES SHAP ==========")
+      print(type(shap_values))
+      print(np.array(shap_values).shape)
+      print(shap_values)
+      explanation = {}
+      for feature, value in zip(train_columns, shap_values[0, :, 0]):
+        explanation[feature] = float(value)
+    except Exception as e:
+     print("SHAP Error:", e)
+     explanation = {}
 
     return jsonify({
         "probability": float(prediction),
-        "prediction": "Diabetes" if prediction >= 0.5 else "No Diabetes"
+        "prediction": "Diabetes" if prediction >= 0.5 else "No Diabetes",
+         "shap": explanation
     })
 
 

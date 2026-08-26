@@ -1,0 +1,59 @@
+.prediction-container{
+    padding:30px;
+    background:#f5f7fb;
+    min-height:100vh;
+}
+
+.prediction-header{
+    margin-bottom:25px;
+}
+
+.prediction-header h1{
+    color:#1e3a8a;
+}
+
+.prediction-header p{
+    color:#666;
+}
+
+.prediction-card{
+    background:#fff;
+    border-radius:12px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.prediction-row{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+.prediction-row:last-child{
+    border:none;
+}
+
+.low{
+    color:green;
+    font-weight:bold;
+}
+
+.medium{
+    color:orange;
+    font-weight:bold;
+}
+
+.high{
+    color:red;
+    font-weight:bold;
+}
+
+.empty-card{
+    background:white;
+    padding:40px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}

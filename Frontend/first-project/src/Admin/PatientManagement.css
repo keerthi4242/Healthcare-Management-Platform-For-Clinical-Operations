@@ -1,0 +1,242 @@
+/* ==============================
+   Patient Management - Dark Theme
+============================== */
+
+.patient-management{
+    padding:30px;
+    background:#121212;
+    min-height:100vh;
+    color:#fff;
+}
+
+/* Header */
+
+.patient-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.patient-header h1{
+    font-size:30px;
+    font-weight:700;
+    color:#ebe6e6;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+/* Search */
+
+.header-actions input{
+    width:280px;
+    padding:12px 18px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    background:#1f1f1f;
+    color:#f1ecec;
+    font-size:15px;
+    transition:.3s;
+}
+
+.header-actions input:focus{
+    box-shadow:0 0 0 2px #1976d2;
+}
+
+/* Add Button */
+
+.add-btn{
+    background:#1976d2;
+    color:#fff;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.add-btn:hover{
+    background:#1565c0;
+    transform:translateY(-2px);
+}
+
+/* ==========================
+      TABLE
+========================== */
+
+.patient-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#212122;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.patient-table thead{
+    background:#1976d2;
+}
+
+.patient-table th{
+    padding:16px;
+    color:rgb(110, 28, 28);
+    text-align:left;
+    font-size:15px;
+}
+
+.patient-table td{
+    padding:16px;
+    border-bottom:1px solid #333;
+    color:#e0e0e0;
+}
+
+.patient-table tbody tr{
+    transition:.25s;
+}
+
+.patient-table tbody tr:hover{
+    background:#2b2b2b;
+}
+
+/* ==========================
+      ACTION BUTTONS
+========================== */
+
+.patient-table td:last-child{
+    display:flex;
+    gap:12px;
+}
+
+.view-btn,
+.edit-btn,
+.delete-btn{
+
+    border:none;
+    color:white;
+    padding:9px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.view-btn{
+    background:#1976d2;
+}
+
+.view-btn:hover{
+    background:#1565c0;
+}
+
+.edit-btn{
+    background:#f9a825;
+}
+
+.edit-btn:hover{
+    background:#f57f17;
+}
+
+.delete-btn{
+    background:#d32f2f;
+}
+
+.delete-btn:hover{
+    background:#b71c1c;
+}
+
+/* ==========================
+      MODAL
+========================== */
+
+.modal{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content{
+
+    width:450px;
+    background:#202020;
+    border-radius:15px;
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.modal-content h2{
+
+    color:white;
+    margin-bottom:10px;
+}
+
+.modal-content input{
+
+    background:#2d2d2d;
+    border:none;
+    color:white;
+    padding:12px 15px;
+    border-radius:8px;
+    font-size:15px;
+    outline:none;
+}
+
+.modal-content input:focus{
+
+    box-shadow:0 0 0 2px #1976d2;
+}
+
+.modal-buttons{
+
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    margin-top:10px;
+}
+
+.save-btn{
+
+    background:#1976d2;
+    color:white;
+    border:none;
+    padding:11px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.save-btn:hover{
+
+    background:#1565c0;
+}
+
+.cancel-btn{
+
+    background:#d32f2f;
+    color:white;
+    border:none;
+    padding:11px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.cancel-btn:hover{
+
+    background:#b71c1c;
+}

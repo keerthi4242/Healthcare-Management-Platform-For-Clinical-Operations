@@ -1,0 +1,492 @@
+
+/* ================================
+   Patient Care Plan
+   ================================ */
+
+.careplan-container {
+  padding: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+
+/* ================================
+   Header
+   ================================ */
+
+.careplan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.careplan-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.careplan-header p {
+  margin: 0;
+  font-size: 15px;
+  opacity: 0.7;
+}
+
+
+/* ================================
+   Status
+   ================================ */
+
+.careplan-status {
+  padding: 9px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.careplan-status.approved {
+  background: #dff6e8;
+  color: #18794e;
+}
+
+.careplan-status.pending {
+  background: #fff3cd;
+  color: #946200;
+}
+
+
+/* ================================
+   Risk Card
+   ================================ */
+
+.careplan-risk-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 16px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.risk-info h2 {
+  margin: 8px 0;
+  font-size: 25px;
+}
+
+.risk-info p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.risk-prediction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.risk-prediction strong {
+  margin-top: 8px;
+  font-size: 22px;
+}
+
+
+/* ================================
+   Section
+   ================================ */
+
+.careplan-section {
+  margin-bottom: 30px;
+}
+
+.careplan-section > h2 {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 650;
+}
+
+.section-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  opacity: 0.6;
+}
+
+
+/* ================================
+   Goal
+   ================================ */
+
+.careplan-card {
+  padding: 20px;
+  border-radius: 14px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.careplan-card p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+/* ================================
+   Daily Care Grid
+   ================================ */
+
+.careplan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.care-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px;
+  border-radius: 15px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.care-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.care-item-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  background: #f1f5f9;
+}
+
+.care-item h3 {
+  margin: 0 0 7px;
+  font-size: 16px;
+}
+
+.care-item p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+.care-item ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.care-item li {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+
+/* ================================
+   Doctor Notes
+   ================================ */
+
+.doctor-notes-card {
+  padding: 20px;
+  border-radius: 14px;
+  background: var(--card-bg, #ffffff);
+  border-left: 4px solid #4f46e5;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  border-right: 1px solid rgba(0, 0, 0, 0.07);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.doctor-notes-card p {
+  margin: 0;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.no-notes {
+  opacity: 0.55;
+}
+
+
+/* ================================
+   Recommendation
+   ================================ */
+
+.recommendation-card {
+  padding: 20px;
+  border-radius: 14px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.recommendation-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+
+/* ================================
+   Review / Adherence
+   ================================ */
+
+.careplan-review {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 10px;
+  padding: 22px;
+  border-radius: 15px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.careplan-review > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.careplan-review strong {
+  font-size: 18px;
+}
+
+
+/* ================================
+   Loading
+   ================================ */
+
+.careplan-loading {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+
+/* ================================
+   Error
+   ================================ */
+
+.careplan-error {
+  padding: 20px;
+  border-radius: 12px;
+  background: #fee2e2;
+  color: #991b1b;
+  text-align: center;
+}
+
+
+/* ================================
+   Empty
+   ================================ */
+
+.careplan-empty {
+  padding: 40px;
+  text-align: center;
+  border-radius: 14px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  opacity: 0.7;
+}
+
+
+/* ================================
+   Responsive
+   ================================ */
+
+@media (max-width: 768px) {
+
+  .careplan-container {
+    padding: 18px;
+  }
+
+  .careplan-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .careplan-risk-card {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-prediction {
+    align-items: flex-start;
+  }
+
+  .careplan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .careplan-review {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ================================
+   Dark Mode Support
+   ================================ */
+
+@media (prefers-color-scheme: dark) {
+
+  .careplan-container {
+    color: #e5e7eb;
+  }
+
+  .careplan-risk-card,
+  .careplan-card,
+  .care-item,
+  .doctor-notes-card,
+  .careplan-review,
+  .careplan-empty {
+    background: #1f2937;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .care-item-icon {
+    background: #374151;
+  }
+
+  .recommendation-card {
+    background: #123524;
+    border-color: #166534;
+  }
+
+  .careplan-status.approved {
+    background: #123524;
+    color: #86efac;
+  }
+
+  .careplan-status.pending {
+    background: #3f3208;
+    color: #facc15;
+  }
+}
+/* =========================================
+   HEALTH OUTCOME TRACKING
+   ========================================= */
+
+.outcome-patient-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.outcome-header {
+    margin-bottom: 24px;
+}
+
+.outcome-header p {
+    margin-top: 6px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.patient-outcome-card {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.patient-outcome-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.outcome-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.outcome-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 18px;
+}
+
+.outcome-values {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.outcome-values > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.outcome-values small {
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.outcome-values strong {
+    font-size: 20px;
+    color: #111827;
+}
+
+.outcome-arrow {
+    font-size: 24px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .outcome-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .outcome-patient-card {
+        padding: 18px;
+    }
+
+    .patient-outcome-card {
+        padding: 16px;
+    }
+
+    .outcome-values strong {
+        font-size: 18px;
+    }
+}

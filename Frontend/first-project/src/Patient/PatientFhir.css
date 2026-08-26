@@ -1,0 +1,64 @@
+.fhir-container {
+    padding: 30px;
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+.fhir-header {
+    margin-bottom: 25px;
+}
+
+.fhir-header h1 {
+    color: #1e3a8a;
+}
+
+.fhir-header p {
+    color: #666;
+}
+
+.fhir-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    margin-bottom: 40px;   /* Increase this for more gap */
+}
+
+.fhir-card h2 {
+    color: white;
+}
+
+.fhir-card td {
+    padding: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.fhir-card td:first-child {
+    color: #cbd5e1;
+    font-weight: 600;
+}
+
+.fhir-card td:last-child {
+    color: #ffffff;   /* White values */
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .fhir-card table,
+    .fhir-card tbody,
+    .fhir-card tr,
+    .fhir-card td {
+        display: block;
+        width: 100%;
+    }
+
+    .fhir-card tr {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .fhir-card td {
+        border: none;
+        padding: 8px 0;
+    }
+}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.infosys.medisphere.service.PatientService;
 
 @RestController
 @RequestMapping("patients")
+@CrossOrigin(origins = "*")
 public class PatientController {
 	@Autowired
 	private PatientService patientService;
@@ -34,16 +36,34 @@ public class PatientController {
   	   return patientService.getAllPatient();
     }
 	@GetMapping("/{patientId}")
-	 public Optional<Patient> getPatientById(@PathVariable int patientId) {
-  	   return patientService.getPatientById(patientId);
+	 public Patient getPatientById(@PathVariable int patientId) {
+  	   return patientService.getPatientById(patientId)
+  			   .orElseThrow(() -> new RuntimeException("Patient not found"));
     }
 	@DeleteMapping("/{patientId}")
 	 public void deletePatient(@PathVariable int patientId) {
  	    patientService.deletePatient(patientId);
    }
-	@PutMapping
-	 public Patient updatePatient(@RequestBody Patient patient) {
-	        return patientService.updatePatient(patient);
-	 }
+//	@PutMapping
+//	 public Patient updatePatient(@RequestBody Patient patient) {
+//	        return patientService.updatePatient(patient);
+//	 }
+	@PutMapping("/{patientId}")
+	public Patient updatePatient(
+	        @PathVariable int patientId,
+	        @RequestBody Patient patient) {
+
+	    patient.setPatientId(patientId);
+
+	    return patientService.updatePatient(patient);
+	}
+	@GetMapping("/count")
+	public long getPatientCount() {
+	    return patientService.getPatientCount();
+	}
+	@GetMapping("/profile/{keycloakUserId}")
+	public Patient getPatientProfile(@PathVariable String keycloakUserId){
+	    return patientService.getPatientByKeycloakUserId(keycloakUserId);
+	}
 
 }

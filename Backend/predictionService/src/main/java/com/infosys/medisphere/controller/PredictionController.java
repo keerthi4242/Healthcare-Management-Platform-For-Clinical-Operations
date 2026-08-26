@@ -38,6 +38,10 @@ public class PredictionController {
 	    public List<Prediction> getPredictionHistory(@PathVariable Long patientId) {
 	        return predictionService.getPredictionsByPatientId(patientId);
 	    }
+	    @GetMapping
+	    public List<Prediction> getAllPredictions() {
+	        return predictionService.getAllPredictions();
+	    }
 	    @GetMapping("/count")
 	    public long getPredictionCount() {
 	        return predictionService.getPredictionCount();

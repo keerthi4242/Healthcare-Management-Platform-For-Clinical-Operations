@@ -1,0 +1,65 @@
+.health-container {
+    padding: 30px;
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+.health-header {
+    margin-bottom: 30px;
+}
+
+.health-header h1 {
+    color: #1e3a8a;
+    margin-bottom: 5px;
+}
+
+.health-header p {
+    color: #666;
+}
+
+.health-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.health-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.health-card:hover {
+    transform: translateY(-5px);
+}
+
+.health-card h3 {
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+.health-card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.recommendation-card {
+    margin-top: 30px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.recommendation-card h2 {
+    color: #1e3a8a;
+    margin-bottom: 15px;
+}
+
+.recommendation-card p {
+    color: #555;
+    line-height: 1.6;
+}

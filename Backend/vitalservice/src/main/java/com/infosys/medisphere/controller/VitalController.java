@@ -1,8 +1,6 @@
 package com.infosys.medisphere.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,38 +9,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.infosys.medisphere.model.Vital;
+import com.infosys.medisphere.scheduler.VitalScheduler;
 import com.infosys.medisphere.service.VitalService;
 
 @RestController
 @RequestMapping("/vitals")
+@CrossOrigin(origins = "*")
 public class VitalController {
-	@Autowired
-	 private VitalService vitalService;
+
+    private final VitalService vitalService;
 
     public VitalController(VitalService vitalService) {
         this.vitalService = vitalService;
     }
-	 @PostMapping
-	 public String publish(@RequestBody Vital vital) {
 
-	        vitalService.publishVital(vital);
+    @PostMapping
+    public String publish(@RequestBody Vital vital) {
 
-	        return "Vital sent to Kafka";
-	    }
+        vitalService.publishVital(vital);
 
-	 @GetMapping
-	 public Vital[] getVitals() {
+        return "Vital sent to Kafka";
+    }
 
-	     Vital[] vitals = vitalService.fetchVitals();
+    @GetMapping("/latest/{patientId}")
+    public Vital getLatestVital(@PathVariable int patientId) {
 
-	     for (Vital vital : vitals) {
-	         vitalService.publishVital(vital);
-	     }
+        return vitalService.getLatestVital(patientId);
 
-	     return vitals;
-	 }
-	    
-
-	   
-
+    }
+//    @GetMapping("/latest/{patientId}")
+//    public Vital getLatestVital(
+//            @PathVariable int patientId) {
+//
+//
+//        Vital vital = VitalScheduler.getLatestVital();
+//
+//        vital.setPatientId(patientId);
+//
+//        return vital;
+//    }
 }

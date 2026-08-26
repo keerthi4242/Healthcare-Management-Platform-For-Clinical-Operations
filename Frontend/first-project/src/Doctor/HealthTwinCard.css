@@ -1,0 +1,68 @@
+.health-card {
+    background: #1d2430 !important;
+    color: white !important;
+    padding: 18px;
+    border-radius: 8px;
+    min-height: 220px;
+}
+.health-card h2,
+.health-card h3,
+.health-card h4,
+.health-card p,
+.health-card span,
+.health-card div {
+    color: white !important;
+}
+
+.health-card h2{
+    color:#64b5f6;
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+.health-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.health-box{
+    background:#2a3342; 
+    border-radius:8px;
+    padding:12px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.health-box:hover{
+    transform:translateY(-2px);
+    border:1px solid #1976d2;
+}
+
+.health-box h4{
+    color:#b0bec5;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+.health-box p{
+    font-size:18px;
+    font-weight:600;
+    margin:0;
+}
+
+.risk{
+    color:#4CAF50;
+}
+.health-box {
+    background: #2a3342;
+    color: white !important;
+}
+
+.health-box h4 {
+    color: #b0bec5 !important;
+}
+
+.health-box p {
+    color: white !important;
+}

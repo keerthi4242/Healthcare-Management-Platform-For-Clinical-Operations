@@ -11,6 +11,7 @@ import com.infosys.medisphere.dto.DiabetesDiseaseRequest;
 import com.infosys.medisphere.dto.HeartDiseaseRequest;
 import com.infosys.medisphere.dto.PredictionResponse;
 import com.infosys.medisphere.model.Prediction;
+import com.infosys.medisphere.model.Vital;
 import com.infosys.medisphere.repository.PredictionRepository;
 
 @Service
@@ -19,7 +20,18 @@ public class PredictionService {
     private PredictionRepository predictionRepository;
     @Autowired
     private RestTemplate restTemplate;
+  //  @Autowired
+   // private VitalService vitalService;
 	public PredictionResponse predictDiabetes(DiabetesDiseaseRequest diabetesrequest) {
+		Vital vital = restTemplate.getForObject(
+			    "http://localhost:8085/vitals/latest/" + diabetesrequest.getPatientId(),
+			    Vital.class
+			);
+
+		if (vital != null) {
+		    diabetesrequest.setBlood_glucose_level(vital.getBloodGlucoseLevel());
+		}
+		
 		String url = "http://localhost:5000/predict-diabetes";
 
         PredictionResponse response =
@@ -28,12 +40,15 @@ public class PredictionService {
                         diabetesrequest,
                         PredictionResponse.class
                 );
-        if ("Diabetes".equalsIgnoreCase(response.getPrediction())) {
+        if (response.getPrediction() != null &&
+        	    response.getPrediction().trim().equalsIgnoreCase("Diabetes")) {
 
-            if (response.getProbability() >= 0.80) {
+        	    double probability = response.getProbability();
+
+            if (probability >= 0.80) {
                 response.setRiskLevel("High Risk");
                 response.setRecommendation("Consult an endocrinologist immediately.");
-            } else if (response.getProbability() >= 0.50) {
+            } else if (probability >= 0.50) {
                 response.setRiskLevel("Moderate Risk");
                 response.setRecommendation("Monitor blood glucose regularly and consult a physician.");
             } else {
@@ -63,6 +78,17 @@ public class PredictionService {
 		
 	}
 	public PredictionResponse predictHeartDisease(HeartDiseaseRequest heartrequest) {
+
+	   // Vital vital = vitalService.getLatestVital(heartrequest.getPatientId().intValue());
+		Vital vital = restTemplate.getForObject(
+			    "http://localhost:8085/vitals/latest/" + heartrequest.getPatientId(),
+			    Vital.class
+			);
+
+	    if (vital != null) {
+	        heartrequest.setTrestbps(vital.getSystolicBP());
+	        heartrequest.setThalach(vital.getHeartRate());
+	    }
 		String url = "http://localhost:5000/predict-heart";
 
         PredictionResponse response =
@@ -72,12 +98,15 @@ public class PredictionService {
                         PredictionResponse.class
                 );
 
-if ("Heart Disease".equalsIgnoreCase(response.getPrediction())) {
+        if (response.getPrediction() != null &&
+        	    response.getPrediction().trim().equalsIgnoreCase("Heart Disease")) {
 
-    if (response.getProbability() >= 0.80) {
+        	    double probability = response.getProbability();
+
+    if (probability>= 0.80) {
         response.setRiskLevel("High Risk");
         response.setRecommendation("Consult a cardiologist immediately.");
-    } else if (response.getProbability() >= 0.50) {
+    } else if (probability >= 0.50) {
         response.setRiskLevel("Moderate Risk");
         response.setRecommendation("Schedule a medical check-up and monitor your heart health.");
     } else {
@@ -112,5 +141,8 @@ if ("Heart Disease".equalsIgnoreCase(response.getPrediction())) {
 	   public long getPredictionCount() {
 	        return predictionRepository.count();
 	    }
+	   public List<Prediction> getAllPredictions() {
+		    return predictionRepository.findAll();
+		}
 
 }

@@ -1,6 +1,6 @@
 package com.infosys.medisphere.kafka;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -12,18 +12,19 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class HealthtwinConsumer {
-	@Autowired
-	 private  HealthtwinService healthTwinService;
+	
+	 private final HealthtwinService healthTwinService;
 
 	    @KafkaListener(
 	            topics = "vital-topic",
 	            groupId = "health-group",
 	            containerFactory = "kafkaListenerContainerFactory")
 	    public void consume(Vital vital) {
-
+	    	 System.out.println("===== KAFKA LISTENER CALLED =====");
 	        System.out.println("Received Vital: " + vital);
 
 	        healthTwinService.processVital(vital);
+	        System.out.println("Health Twin Updated");
 	    }
 
 }

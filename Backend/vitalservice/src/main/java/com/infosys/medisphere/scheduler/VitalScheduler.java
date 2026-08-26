@@ -1,8 +1,8 @@
 package com.infosys.medisphere.scheduler;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.time.LocalDateTime;
+import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -11,33 +11,75 @@ import com.infosys.medisphere.service.VitalService;
 
 @Component
 public class VitalScheduler {
-	 @Autowired
-	    private VitalService vitalService;
 
-	 @Scheduled(fixedRate = 1000)
-	 public void sendVitals() {
+    private final Random random = new Random();
+    private final VitalService vitalService;
+    public VitalScheduler(VitalService vitalService) {
+        this.vitalService = vitalService;
+    }
 
-	     Vital[] vitals = vitalService.fetchVitals();
+//    @Scheduled(fixedRate = 5000)
+//    public void generateVitals() {
+//
+//        Vital vital = new Vital();
+//
+//        vital.setHeartRate(65 + random.nextInt(25));
+//        vital.setSpo2(95 + random.nextInt(5));
+//        vital.setTemperature(36.4 + random.nextDouble());
+//        vital.setRespiratoryRate(12 + random.nextInt(9));
+//
+//        vital.setSystolicBP(110 + random.nextInt(21));
+//        vital.setDiastolicBP(70 + random.nextInt(16));
+//
+//        vital.setBloodGlucoseLevel(80 + random.nextInt(121));
+//
+//        vital.setTimestamp(LocalDateTime.now().toString());
+//        vitalService.setLatestVital(vital);
+//        vitalService.publishVital(vital);
+//
+//        System.out.println("Generated Vitals: " + vital);
+//       
+//    }
+    @Scheduled(fixedRate = 5000)
+    public void generateVitals() {
 
-	     for (Vital vital : vitals) {
+    	 int[] patientIds = {1, 2, 3, 4, 6, 8};
 
-	         vital.setHeartRate(
-	                 ThreadLocalRandom.current().nextInt(70, 91));
+    	    for (int patientId : patientIds) {
 
-	         vital.setTemperature(
-	                 ThreadLocalRandom.current().nextDouble(36.5, 37.5));
+            Vital vital = new Vital();
 
-	         vital.setSpo2(
-	                 ThreadLocalRandom.current().nextInt(96, 100));
+            vital.setPatientId(patientId);
+            if(random.nextInt(100)<10) {
+            	vital.setHeartRate(140 + random.nextInt(20));
+                vital.setSpo2(85 + random.nextInt(5));
+                vital.setTemperature(39 + random.nextDouble());
 
-	         vital.setSystolicBP(
-	                 ThreadLocalRandom.current().nextInt(110, 131));
+                vital.setRespiratoryRate(25 + random.nextInt(8));
 
-	         vital.setDiastolicBP(
-	                 ThreadLocalRandom.current().nextInt(70, 91));
+                vital.setSystolicBP(180 + random.nextInt(20));
+                vital.setDiastolicBP(120 + random.nextInt(10));
+                vital.setBloodGlucoseLevel(250 + random.nextInt(100));
 
-	         vitalService.publishVital(vital);
-	     }
-	 }
+            }
+            else {
 
+            vital.setHeartRate(65 + random.nextInt(25));
+            vital.setSpo2(95 + random.nextInt(5));
+            vital.setTemperature(36.4 + random.nextDouble());
+            vital.setRespiratoryRate(12 + random.nextInt(9));
+
+            vital.setSystolicBP(110 + random.nextInt(21));
+            vital.setDiastolicBP(70 + random.nextInt(16));
+            vital.setBloodGlucoseLevel(80 + random.nextInt(121));
+
+            vital.setTimestamp(LocalDateTime.now().toString());
+
+            vitalService.publishVital(vital);
+        }
+            vital.setTimestamp(LocalDateTime.now().toString());
+
+            vitalService.publishVital(vital);
+            }
+    }
 }

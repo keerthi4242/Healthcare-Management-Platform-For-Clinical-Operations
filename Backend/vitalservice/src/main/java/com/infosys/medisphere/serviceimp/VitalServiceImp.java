@@ -1,33 +1,46 @@
 package com.infosys.medisphere.serviceimp;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.infosys.medisphere.kafka.VitalProducer;
+//import com.infosys.medisphere.kafka.VitalProducer;
 import com.infosys.medisphere.model.Vital;
 import com.infosys.medisphere.service.VitalService;
 
+//import lombok.RequiredArgsConstructor;
+
 @Service
+//@RequiredArgsConstructor
 public class VitalServiceImp implements VitalService {
 	@Autowired
-	 private VitalProducer vitalProducer;
-	  @Autowired
-	    private RestTemplate restTemplate;
-
-	    private static final String API =
-	        "https://6a5a552bad8332e75f0265ed.mockapi.io/patient-vitals/vitals";
-
-	    public VitalServiceImp(VitalProducer vitalProducer) {
-	        this.vitalProducer = vitalProducer;
-	    }
+    private VitalProducer vitalProducer ;
+	private Vital latestVital;
+	private final Map<Integer, Vital> latestVitals = new ConcurrentHashMap<>();
 
 	    @Override
 	    public void publishVital(Vital vital) {
-	        vitalProducer.publishVital(vital);
+	        latestVitals.put(vital.getPatientId(), vital);
+	       vitalProducer.publishVital(vital);
+	        System.out.println("Stored Vital: " + vital);
 	    }
+
 	    @Override
-	    public Vital[] fetchVitals() {
-	        return restTemplate.getForObject(API, Vital[].class);
+	    public Vital getLatestVital(int patientId) {
+
+	        return latestVitals.get(patientId);
+
 	    }
+
+
+@Override
+public void setLatestVital(Vital vital){
+
+    this.latestVital = vital;
+
+}
+	    
 }

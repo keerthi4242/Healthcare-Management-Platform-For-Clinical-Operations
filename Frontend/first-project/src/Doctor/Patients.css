@@ -1,0 +1,173 @@
+/* ============================= */
+/* PATIENTS PAGE */
+/* ============================= */
+
+.patients-page {
+    padding: 30px;
+    min-height: 100vh;
+    background: #111827;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+
+/* ============================= */
+/* HEADING */
+/* ============================= */
+
+.patients-page h2 {
+    margin: 0 0 25px 0;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+/* ============================= */
+/* TABLE CONTAINER */
+/* ============================= */
+
+.patients-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1f2937;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ============================= */
+/* TABLE HEADER */
+/* ============================= */
+
+.patients-table thead {
+    background: #1976d2;
+}
+
+.patients-table th {
+    padding: 16px;
+    text-align: left;
+
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+
+    border-bottom: 2px solid #3b82f6;
+}
+
+
+/* ============================= */
+/* TABLE DATA */
+/* ============================= */
+
+.patients-table td {
+    padding: 16px;
+
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+
+    border-bottom: 1px solid #374151;
+}
+
+
+/* ============================= */
+/* PATIENT NAME */
+/* ============================= */
+
+.patients-table td:nth-child(2) {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+/* ============================= */
+/* ID */
+/* ============================= */
+
+.patients-table td:first-child {
+    color: #60a5fa;
+    font-weight: 700;
+}
+
+
+/* ============================= */
+/* HOVER */
+/* ============================= */
+
+.patients-table tbody tr:hover {
+    background: #2d3748;
+}
+
+
+/* ============================= */
+/* VIEW BUTTON */
+/* ============================= */
+
+.patient-view-btn {
+    background: #2563eb;
+
+    color: #ffffff;
+
+    border: none;
+
+    padding: 9px 18px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.patient-view-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================= */
+/* EMPTY PATIENT LIST */
+/* ============================= */
+
+.no-patients {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #d1d5db;
+
+    font-size: 16px;
+}
+
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .patients-page {
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .patients-page h2 {
+        font-size: 24px;
+    }
+
+    .patients-table {
+        min-width: 650px;
+    }
+
+    .patients-table th,
+    .patients-table td {
+        padding: 12px;
+    }
+}
